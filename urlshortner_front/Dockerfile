@@ -17,8 +17,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# This will do the trick, use the corresponding env file for each environment.
-#COPY .env.production.sample .env.production
+
 #for deploying to kubernetes this values needs to match the name of the service that point to your backend pod
 ENV NEXT_PUBLIC_PROTOCOL="http://"
 ENV NEXT_PUBLIC_URL="backu:4000/"
