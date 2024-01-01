@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+  labels:
+    app: url_shortner_front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url_shortner_front
+  template:
+    metadata:
+      labels:
+        app: url_shortner_front
+    spec:
+      containers:
+      - name: front
+        image: mbhmma/url-shortly-front
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deployment
+  labels:
+    app: url_shortner_back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url_shortner_back
+  template:
+    metadata:
+      labels:
+        app: url_shortner_back
+    spec:
+      containers:
+      - name: back
+        image: mbhmma/url-shortly-back
+        env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: port-config
+                  key: port
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-uri
+                  key: mongo-uri
+        ports:
+        - containerPort: 4000
