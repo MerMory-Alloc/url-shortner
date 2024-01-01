@@ -20,7 +20,7 @@ COPY . .
 
 #for deploying to kubernetes this values needs to match the name of the service that point to your backend pod
 ENV NEXT_PUBLIC_PROTOCOL="http://"
-ENV NEXT_PUBLIC_URL="backu:4000/"
+ENV NEXT_PUBLIC_URL="backu:"
 ENV NEXT_PUBLIC_PORT="4000/"
 RUN npm run build
 
