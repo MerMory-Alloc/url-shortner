@@ -40,11 +40,6 @@ spec:
       - name: back
         image: mbhmma/url-shortly-back:latest
         env:
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: port-config
-                  key: port
             - name: MONGO_URI
               valueFrom:
                 secretKeyRef:
