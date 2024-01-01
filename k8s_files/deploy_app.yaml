@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: mbhmma/url-shortly-front
+        image: mbhmma/url-shortly-front:latest
         ports:
         - containerPort: 3000
 ---
@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: back
-        image: mbhmma/url-shortly-back
+        image: mbhmma/url-shortly-back:latest
         env:
             - name: PORT
               valueFrom:
