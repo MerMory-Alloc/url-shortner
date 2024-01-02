@@ -19,9 +19,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 #for deploying to kubernetes this values needs to match the name of the service that point to your backend pod
-ENV NEXT_PUBLIC_PROTOCOL="http://"
-ENV NEXT_PUBLIC_URL="backu:"
-ENV NEXT_PUBLIC_PORT="80/"
+ENV NEXT_PUBLIC_COMPLET_BACK_URL="http://localhost:4000/api/shorturl/"
+ENV NEXT_PUBLIC_NAMESPACE="localhost/"
 RUN npm run build
 
 # 3. Production image, copy all the files and run next
@@ -29,6 +28,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV NODE_ENV_COMPLET_BACK_URL="http://backu:80/api/shorturl"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

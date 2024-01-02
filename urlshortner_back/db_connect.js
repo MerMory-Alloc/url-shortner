@@ -11,11 +11,11 @@ mongoose.connect(db , {
 });
 
 const urlSchema = new mongoose.Schema({
-    fullUrl: {
+    original_url: {
       type: String,
       required: true,
     },
-    shortUrl: {
+    short_url: {
       type: String,
       required: true,
       unique: true
