@@ -18,9 +18,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-#for deploying to kubernetes this values needs to match the name of the service that point to your backend pod
-ENV NEXT_PUBLIC_COMPLET_BACK_URL="http://localhost:4000/api/shorturl/"
-ENV NEXT_PUBLIC_NAMESPACE="localhost/"
+#temporary url because the use of killercode k3s playground
+ENV NEXT_PUBLIC_COMPLET_BACK_URL="https://fb656c63-dd1a-491b-bdae-5563851c3827-10-244-3-63-4000.spch.r.killercoda.com/api/shorturl/"
+ENV NEXT_PUBLIC_NAMESPACE="killercoda/"
 RUN npm run build
 
 # 3. Production image, copy all the files and run next
@@ -28,6 +28,8 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+
+#for deploying to kubernetes this values needs to match the name of the service that point to your backend pod
 ENV NODE_ENV_COMPLET_BACK_URL="http://backu:80/api/shorturl"
 
 RUN addgroup --system --gid 1001 nodejs
