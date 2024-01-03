@@ -44,14 +44,19 @@ const Form = () => {
                   } else {
                     if (data.message === "found in the DB") {
                       setExistingUrls((prevData) => {
-                        let newData = [...prevData];
-                        const index = newData.findIndex(obj => JSON.stringify(obj) === JSON.stringify(data));
-                        if (index > -1) {
-                          const obj = prevData.splice(index, 1)[0];
-                          newData.unshift(obj);
+                        const newData = [...prevData];
+                        const existingIndex = newData.findIndex(obj => JSON.stringify(obj) === JSON.stringify(data));
+                    
+                        if (existingIndex > -1) {
+                          // Move the existing object to the beginning of the array
+                          const existingObject = newData[existingIndex];
+                          newData.splice(existingIndex, 1);
+                          newData.unshift(existingObject);
                         }
-
+                    
+                        // Update local storage with the updated data
                         localStorage.setItem('urls', JSON.stringify(newData));
+                    
                         console.log('POST request successful', data);
                         return newData;
                       });
