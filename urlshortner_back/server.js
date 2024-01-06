@@ -6,7 +6,7 @@ const {createUrl,findShortUrl,verifyInput,getFullUrl} = require('./urlController
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const app = express();
 
@@ -88,6 +88,7 @@ const checkLongUrlInDb = (req, res, next) => {
   app.get('/api/shorturl/:short_url',(req, res) => {
     const { short_url } = req.params;
 
+    // Validate the short URL format provided in the parameters to avoid the search in the DB for somthing that is sure does not exist
     const shortUrlRegex = /^[a-zA-Z0-9]{7}$/;
     if (!shortUrlRegex.test(short_url)) {
       return res.status(400).json({ error: 'Invalid short URL format' });

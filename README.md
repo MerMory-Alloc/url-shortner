@@ -19,11 +19,13 @@ The frontend is designed using Next.js, a React-based framework, and is responsi
 
 The backend API handles the core functionality of the URL shortener. It is responsible for:
 
-- Generating short URLs using the `uuid` library, creating unique 7-character strings.
+- Generating short URLs using the `nanoid` library, creating unique 7-character strings.
 - Storing URL data in MongoDB Atlas, a cloud-based MongoDB database, utilizing a schema with fields for `original_url` and `short_url`.
 - Redirecting users from the shortened link (`{domain-name}/api/shorturl/{shorturl}`) to the original URL.
 
 ## Application Flow
+
+![App flow](appFlow.png)
 
 1. **User Interaction:**
    - Users interact with the client-side rendering of the Next.js app, entering long URLs into the form.
@@ -54,4 +56,4 @@ For deploying the URL Shortener project to Kubernetes, the following steps are i
    ```
 and now  the apps are deployed and runing.
 
-[kubernetes architecture](kubernetesArchi.png)
+![kubernetes architecture](kubernetesArchi.png)

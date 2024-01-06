@@ -29,7 +29,7 @@ This file sets up the Express server, defines route handlers for creating and re
 
 **Route Handlers:**
 - `/api/shorturl` (POST): Validates input, checks if the long URL exists in the database, and creates a short URL if it doesn't.
-- `/api/shorturl/:short_url` (GET): Redirects the user to the original URL when a valid short URL is provided.
+- `/api/shorturl/:short_url` (GET): Redirects the user to the original URL when a short URL is found in the database.
 
 **Server Start:**
 - Starts the server by calling `app.listen()` with the specified port.
