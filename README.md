@@ -4,6 +4,8 @@
 
 The URL Shortener project here is my solution for the freecodecamp challenge as a part of the "Back End Development and APIs course" also for "Coding Challenges By John Crickett" comprising a frontend built with Next.js and a backend API. This documentation outlines the architectural design, the flow of the application, and the deployment process on Kubernetes.
 
+![front page](shortly.png)
+
 ### Frontend (Next.js)
 
 The frontend is designed using Next.js, a React-based framework, and is responsible for providing a user-friendly interface for URL shortening. It consists of two main parts:
