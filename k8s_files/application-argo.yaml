@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: url-shortly
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:MerMory-Alloc/url-shortner.git
+    targetRevision: HEAD
+    path: k8s_files/dep
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true
