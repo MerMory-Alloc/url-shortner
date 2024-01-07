@@ -6,13 +6,14 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:MerMory-Alloc/url-shortner.git
+    repoURL: https://github.com/MerMory-Alloc/url-shortner.git
     targetRevision: HEAD
     path: k8s_files/dep
     directory:
       recurse: true
   destination:
     server: https://kubernetes.default.svc
+    namespace: default
   syncPolicy:
     automated:
       prune: true 
