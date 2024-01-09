@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - "v*.*.*"
+      - "v*.*.*-fr"
     paths:
       - urlshortner_front/**
   pull_request:
@@ -79,5 +79,5 @@ jobs:
           git config user.email "githubactionbot@myurlshortly.com"
           git config user.name "githubactionbot"
           git commit -am "GitHubActionBot update to $APP_NAME"
-          git pull --rebase origin
+          git pull --rebase origin main
           git push origin main
