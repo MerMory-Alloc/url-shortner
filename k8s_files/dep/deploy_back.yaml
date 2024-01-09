@@ -1,33 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: front-deployment
-  labels:
-    app: url_shortner_front
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: url_shortner_front
-  template:
-    metadata:
-      labels:
-        app: url_shortner_front
-    spec:
-      containers:
-      - name: front
-        image: mbhmma/url-shortly-front:latest
-        ports:
-        - containerPort: 3000
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: back-deployment
   labels:
     app: url_shortner_back
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: url_shortner_back
