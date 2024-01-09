@@ -69,16 +69,20 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v4
         with:
-          github_token: ${{secrets.REPO_TOKEN}}
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - 
         name: Modify file
         run: |
           sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/*/}'|' k8s_files/dep/deploy_back.yaml
       - 
-        name: Commit and push
+        name: Git Config and Commit
         run: |
           git config user.email "githubactionbot@myurlshortly.com"
           git config user.name "githubactionbot"
           git commit -am "GitHubActionBot update to $APP_NAME"
-          git pull --rebase origin main
-          git push origin main
+      - 
+        name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.REPO_TOKEN}}
