@@ -59,3 +59,46 @@ For deploying the URL Shortener project to Kubernetes, the following steps are i
 and now  the apps are deployed and runing.
 
 ![kubernetes architecture](kubernetesArchi.png)
+
+## CI/CD Process
+
+This project leverages GitHub Actions for Continuous Integration (CI) and ArgoCD for Continuous Deployment (CD), ensuring a streamlined and automated development pipeline.
+
+### CI Workflow
+
+The CI workflow for both the frontend  and the backend api  is triggered on pushes to the main branch, pull requests to the main branch only when there is a change in their respective folders, or tag creation following the "v*..-fr" pattern for the frontend app and the "v*..-bk" pattern for the backend api. The workflow includes two main jobs:
+
+#### Build Job
+
+- **Name:** `build`
+- **Purpose:** Build and publish Docker images.
+- **Steps:**
+  - Checkout the source code.
+  - Use Docker metadata action to generate Docker tags based on various events.
+  - Login to Docker Hub securely.
+  - Set up Docker Buildx for efficient multi-platform builds.
+  - Build and push Docker images to the specified Docker Hub repository.
+
+#### Deploy Release Job
+
+- **Name:** `deploy-release`
+- **Purpose:** Deploy the release by updating Kubernetes deployment manifests.
+- **Conditions:** Only triggered on tag creation.
+- **Steps:**
+  - Checkout the source code.
+  - Modify the deployment YAML file to update the image tag with the newly created release tag.
+  - Configure Git and commit the changes.
+  - Push the changes to the repository.
+
+
+So basically, when a developer make some changes in one of the apps folders , commit the work  and push to the repo the build job will be triggered creating a new docker image but it is not for deployment. the developer needs to create a new tag version and push it to github in order to both the build job and deploy-release  to be triggered and thus creating a new image with the version tag and changing it in the deployment kubernetes manifest.
+
+### CD Process
+
+The ArgoCD application manifest, located at `k8s_files/argocd/application.yaml`, specifies the deployment configuration for the URL Shortener. ArgoCD continuously monitors the GitHub repository (every 3 minutes a less you configured a webhook) and automatically applies changes to the Kubernetes cluster.
+
+## Notes
+
+- the architectural choices here are just to strengthen my learning in some technologies.at least to my knowledge, there is no need here for such a simple application to be decoupled to  microservices yes maybe i wanted to separate the api from the frontend app which is built using next js (already a fullstack framework i know) but still a monolith approach would be sufficient.  
+  
+- Also another thing needs to be mentioned. It is better to separate the k8s deployments manifests, te front app code and the backend api code into different repositories i think it is better for managing the project. 
