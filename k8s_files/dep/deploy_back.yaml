@@ -18,10 +18,10 @@ spec:
       - name: back
         image: mbhmma/url-shortly-back:v1.0.1-bk
         env:
-            - name: MONGO_URI
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-uri
-                  key: mongo-uri
+          - name: MONGO_URI
+            valueFrom:
+              secretKeyRef:
+                name: mongo-uri
+                key: mongo-uri
         ports:
         - containerPort: 4000
