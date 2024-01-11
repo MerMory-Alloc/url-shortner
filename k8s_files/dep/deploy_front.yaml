@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: front
-        image: mbhmma/url-shortly-front:v1.0.0-fr
+        image: mbhmma/url-shortly-front:v1.0.1-fr
         ports:
         - containerPort: 3000
