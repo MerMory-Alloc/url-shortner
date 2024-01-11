@@ -19,7 +19,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 #temporary url because the use of killercode k3s playground
-ENV NEXT_PUBLIC_COMPLET_BACK_URL="https://fb656c63-dd1a-491b-bdae-5563851c3827-10-244-3-63-4000.spch.r.killercoda.com/api/shorturl/"
+ENV NEXT_PUBLIC_COMPLET_BACK_URL="https://547e1aa3-c818-4cd4-81a3-7dfa1644ab59-10-244-4-31-8080.spch.r.killercoda.com/api/shorturl/"
 ENV NEXT_PUBLIC_NAMESPACE="killercoda/"
 RUN npm run build
 

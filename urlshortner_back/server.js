@@ -16,6 +16,10 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.get("/",(req,res) => {
+  res.send('Hello ! you can request the api at /api/shorturl')
+});
+
 // Middleware to validate the request body
 const validateRequestBody = (req, res, next) => {
     const inputedValue = req.body;
