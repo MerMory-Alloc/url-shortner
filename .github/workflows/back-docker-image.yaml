@@ -36,7 +36,6 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
-            type=sha
       -
         name: Login to Docker Hub
         if: github.event_name != 'pull_request'
@@ -74,8 +73,7 @@ jobs:
         run: |
           tagwv=${GITHUB_REF#refs/tags/}
           TAG="${tagwv#v}"
-          echo ${TAG}
-          sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/tags/}'|' k8s_files/dep/deploy_back.yaml
+          sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${TAG}'|' k8s_files/dep/deploy_back.yaml
       - 
         name: Git Config and Commit
         run: |
