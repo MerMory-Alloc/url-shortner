@@ -17,11 +17,5 @@ spec:
       containers:
       - name: front
         image: mbhmma/url-shortly-front:1.0.2-fr
-        env:
-          - name: NEXT_PUBLIC_COMPLET_BACK_URL
-            valueFrom:
-              secretKeyRef:
-                name: server-url
-                key: server-url
         ports:
         - containerPort: 3000
