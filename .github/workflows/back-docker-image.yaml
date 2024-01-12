@@ -74,6 +74,7 @@ jobs:
         run: |
           echo ${GITHUB_REF#refs/tags/}
           echo $GITHUB_REF#refs/tags/
+          echo ${{ steps.meta.outputs.tags }}
           sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/tags/}'|' k8s_files/dep/deploy_back.yaml
       - 
         name: Git Config and Commit
