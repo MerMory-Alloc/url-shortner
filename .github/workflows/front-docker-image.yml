@@ -71,7 +71,7 @@ jobs:
       - 
         name: Modify file
         run: |
-          sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/*/}'|' k8s_files/dep/deploy_front.yaml
+          sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/tags/}'|' k8s_files/dep/deploy_front.yaml
       - 
         name: Git Config and Commit
         run: |
