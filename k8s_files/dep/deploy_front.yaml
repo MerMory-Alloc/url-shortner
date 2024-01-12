@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: mbhmma/url-shortly-front:v1.0.1-fr
+        image: mbhmma/url-shortly-front:1.0.2-fr
         env:
           - name: NEXT_PUBLIC_COMPLET_BACK_URL
             valueFrom:
