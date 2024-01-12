@@ -72,9 +72,9 @@ jobs:
       - 
         name: Modify file
         run: |
-          echo ${GITHUB_REF#refs/tags/}
-          echo $GITHUB_REF#refs/tags/
-          echo ${{ steps.meta.outputs.tags }}
+          tagwv=${GITHUB_REF#refs/tags/}
+          TAG="${tagwv#v}"
+          echo ${TAG}
           sed -i'' -E 's|^(\s*-?\s*image:\s*'${{env.APP_IMAGE}}':)[^ ]+|\1'${GITHUB_REF#refs/tags/}'|' k8s_files/dep/deploy_back.yaml
       - 
         name: Git Config and Commit
